@@ -2,6 +2,14 @@
   "name": "arv-rest",
   "version": "0.0.1",
   "description": "A very easy rest (express like) api tool which allows you to create http api's with bun",
+  "bugs": {
+    "url": "https://github.com/arthurvanl/arv-rest/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arthurvanl/arv-rest.git"
+  },
+  "homepage": "https://github.com/arthurvanl/arv-rest",
   "module": "src/index.ts",
   "type": "module",
   "main": "dist/index.js",

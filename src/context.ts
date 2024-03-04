@@ -21,7 +21,7 @@ export class Context<Route extends string, Params extends ExtractRouteParams<Rou
             throw new Error('Too many segments in route!', {cause: [{defined_segments, segments}]})
         }
 
-        const params = segments.filter((p, i) => defined_segments[i].includes(':')).map<[string, string]>((p, i) => [defined_segments[i], p]);
+        const params = segments.filter((_, i) => defined_segments[i].includes(':')).map<[string, string]>((p, i) => [defined_segments[i], p]);
 
         return params.reduce((pre, [key, value]) => ({...pre, [key]: value}), {} as Params)
     }
