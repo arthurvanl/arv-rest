@@ -94,7 +94,7 @@ export class Context<Route extends string, Params extends ExtractRouteParams<Rou
      * @param status - The HTTP status. Default `200`
      * @returns 
      */
-    public send<Body extends string | Record<string, unknown>>(body: Body, status: number): Response {
+    public send<Body extends string | Record<string, unknown>>(body: Body, status: number = 200): Response {
         const responseBody = typeof body === 'string' ? body : JSON.stringify(body);
         const content_type = typeof body === 'object' ? 'application/json' : 'text/plain';
 
