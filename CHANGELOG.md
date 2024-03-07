@@ -1,5 +1,12 @@
 # arv-rest
 
+## 0.0.6
+
+### Patch Changes
+
+- 1ebb686: - add status badge
+  - remove param type on Context#send
+
 ## 0.0.5
 
 ### Patch Changes
