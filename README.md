@@ -1,4 +1,6 @@
 # arv-rest
+[![Publish](https://github.com/arthurvanl/arv-rest/actions/workflows/publish.yml/badge.svg)](https://github.com/arthurvanl/arv-rest/actions/workflows/publish.yml)
+
 A very easy rest (express like) api tool which allows you to create http api's with bun
 
 A very simple example of how you can use it:
