@@ -1,5 +1,12 @@
 # arv-rest
 
+## 0.0.7
+
+### Patch Changes
+
+- 772dec9: fix routes not working on main domain
+  fix parameters not returning properly
+
 ## 0.0.6
 
 ### Patch Changes
