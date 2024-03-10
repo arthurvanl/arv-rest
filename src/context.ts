@@ -20,10 +20,17 @@ export class Context<Route extends string, Params extends ExtractRouteParams<Rou
         if(defined_segments.length !== segments.length) {
             throw new Error('Too many segments in route!', {cause: [{defined_segments, segments}]})
         }
+        
+        const params = defined_segments.map((segment, i) => {
 
-        const params = segments.filter((_, i) => defined_segments[i].includes(':')).map<[string, string]>((p, i) => [defined_segments[i], p]);
+            if(segment.includes(':')) {
+                return [segment, segments[i]];
+            } else {
+                return undefined;
+            }
+        }).filter((p) => typeof p !== 'undefined') as string[][];
 
-        return params.reduce((pre, [key, value]) => ({...pre, [key]: value}), {} as Params)
+        return params.reduce((pre, [key, value]) => ({...pre, [key.substring(1)]: value}), {} as Params)
     }
 
     /**
