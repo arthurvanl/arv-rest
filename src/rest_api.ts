@@ -1,7 +1,7 @@
+import { Server } from "bun";
 import { Context } from "./context";
 import { EventEmitter } from "./event_emitter";
-import { ExtractRouteParams, RouteHandler, Method, MiddlewareHandler, BodyType, EventMap } from "./types";
-import { Server } from "bun";
+import { EventMap, ExtractRouteParams, Method, MiddlewareHandler, RouteHandler } from "./types";
 
 class Route<R extends string = string, Params extends ExtractRouteParams<R> = ExtractRouteParams<R>> {
     
@@ -47,6 +47,7 @@ class RestAPI {
      */
     public setDefaultHeader(header: string, value: string) {
         this._default_headers.append(header, value);
+        return this;
     }
 
     private registerRoute<Route extends string>(method: Method, path: Route, handler: RouteHandler<Route>) {
@@ -60,7 +61,7 @@ class RestAPI {
             const segments = url.pathname.split('/').filter(Boolean);
             const defined_segments = r.getRoute().split('/').filter(Boolean);
 
-            const check_segments = defined_segments.filter((s) => !s.includes(':')).some((s, i) => s === segments[i]);
+            const check_segments = defined_segments.filter((s) => !s.includes(':')).some((s, i) => s === segments[i]) || defined_segments.length === 0;
 
             return r.getMethod() === request.method && defined_segments.length === segments.length && check_segments;
         });
@@ -100,6 +101,7 @@ class RestAPI {
     public use(middleware: MiddlewareHandler) {
 
         this.middlewares.push(new Middleware(middleware));
+        return this;
     }
 
     public get<Route extends string>(path: Route, handler: RouteHandler<Route>) {
@@ -123,4 +125,4 @@ class RestAPI {
     }
 }
 
-export { RestAPI, Route, Context }
+export { Context, RestAPI, Route };
