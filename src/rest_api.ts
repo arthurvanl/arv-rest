@@ -10,6 +10,7 @@ class Route<R extends string = string, Params extends ExtractRouteParams<R> = Ex
     public getMethod() { return this.method }
     public getRoute() { return this.route }
     public getHandler() { return this.handle; }
+    public setRoute<R2 extends string>(route: R2) { this.route = route as unknown as R; return this as unknown as Route<R2>; }
 }
 
 class Middleware {
