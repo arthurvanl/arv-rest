@@ -40,8 +40,8 @@ class RestAPI {
         return this._server;
     }
 
-    public get routes() {
-        return this._routes;
+    public get routes(): Route[] {
+        return this._routes as Route[];
     }
 
     /**
