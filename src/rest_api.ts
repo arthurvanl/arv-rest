@@ -20,7 +20,7 @@ class Middleware {
 
 class RestAPI {
 
-    private routes: unknown[] = [];
+    private _routes: unknown[] = [];
     private middlewares: Middleware[] = [];
     private hostname: string = 'http://localhost/';
     private not_found_route: Route<""> | undefined;
@@ -40,6 +40,10 @@ class RestAPI {
         return this._server;
     }
 
+    public get routes() {
+        return this._routes;
+    }
+
     /**
      * Set default headers on all requests
      * @param header 
@@ -51,13 +55,13 @@ class RestAPI {
     }
 
     private registerRoute<Route extends string>(method: Method, path: Route, handler: RouteHandler<Route>) {
-        this.routes.push(new Route(handler, path, method, this.hostname));
+        this._routes.push(new Route(handler, path, method, this.hostname));
     }
 
     private async handleRequest(request: Request) {
 
         const url = new URL(request.url);
-        const route = (this.routes as Route[]).find((r) => {
+        const route = (this._routes as Route[]).find((r) => {
             const segments = url.pathname.split('/').filter(Boolean);
             const defined_segments = r.getRoute().split('/').filter(Boolean);
 
