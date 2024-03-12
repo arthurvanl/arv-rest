@@ -23,5 +23,5 @@ export type EventMap = {
     response_sent: []
 }
 
-export type RouteHandler<Route extends string, Params extends ExtractRouteParams<Route> = ExtractRouteParams<Route>> = (req: Context<Route, Params>) => PromiseLike<Response> | Response | PromiseLike<true> | true
-export type MiddlewareHandler = (req: Context<"", "">) => PromiseLike<Response> | Response | PromiseLike<true> | true
+export type RouteHandler<Route extends string, Params extends ExtractRouteParams<Route> = ExtractRouteParams<Route>> = (req: Context<Route, Params>) => PromiseLike<Response | true> | Response | true;
+export type MiddlewareHandler = (req: Context<"", "">) => PromiseLike<Response | true> | Response | true;
