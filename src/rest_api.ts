@@ -66,7 +66,7 @@ class RestAPI {
             const segments = url.pathname.split('/').filter(Boolean);
             const defined_segments = r.getRoute().split('/').filter(Boolean);
 
-            const check_segments = defined_segments.filter((s) => !s.includes(':')).some((s, i) => s === segments[i]) || defined_segments.length === 0;
+            const check_segments = defined_segments.filter((s) => !s.includes(':')).every((s, i) => s === segments[i]) || defined_segments.length === 0;
 
             return r.getMethod() === request.method && defined_segments.length === segments.length && check_segments;
         });
